@@ -1,0 +1,4 @@
+judgnation
+==========
+
+Judgment of domination
