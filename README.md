@@ -37,5 +37,5 @@ Judgment of domination
 
 ## 製作者
 
-HTML, CSS, Test : @Geckotang
-Javascript : @cancer6
+* HTML, CSS, Test : [@geckotang](https://twitter.com/geckotang)
+* Javascript : [@cancer6](https://twitter.com/cancer6)
