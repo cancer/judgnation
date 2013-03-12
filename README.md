@@ -34,3 +34,8 @@ Judgment of domination
 * スタート時に手間取りそう
 * iPadを守る何かが必要
 * 雨に弱い
+
+## 製作者
+
+HTML, CSS, Test : @Geckotang
+Javascript : @cancer6
