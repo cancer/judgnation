@@ -35,7 +35,17 @@ Judgment of domination
 * iPadを守る何かが必要
 * 雨に弱い
 
+## 使う技術
+
+* Application Cache
+* Sass + Compass
+* Grunt.js
+
 ## 製作者
 
 * HTML, CSS, Test : [@geckotang](https://twitter.com/geckotang)
 * Javascript : [@cancer6](https://twitter.com/cancer6)
+
+## 参考
+
+* [アプリケーションキャッシュの使い方](http://tenderfeel.xsrv.jp/html-xhtml/html5-html-xhtml/1172/)
