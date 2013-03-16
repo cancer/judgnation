@@ -4,62 +4,6 @@
  * @refs http://d.hatena.ne.jp/koba04/20130203/1359898395
  * @refs https://gist.github.com/shibu-t/4314906
  * */
-
-
-
-
-
-module.exports = function(grunt) {
-	// Project configuration.
-	grunt.initConfig({
-		pkg: '<json:package.json>',
-		compass: {
-			dev: {
-				src: '_scss',
-				dest: 'css',
-				linecomments: true,
-				forcecompile: true,
-				require: [],
-				debugsass: true,
-				images: '',
-				relativeassets: true
-			},
-			prod: {
-				src: '_scss',
-				dest: 'css',
-				outputstyle: 'compressed',
-				linecomments: false,
-				forcecompile: true,
-				require: [],
-				debugsass: false,
-				images: '',
-				relativeassets: true
-			}
-		},
-		mincss: {
-			'css/style.min.css': [ 'css/style.css' ]
-		},
-		watch: {
-			compass: {
-				files: ['_scss/*.scss'],
-				tasks: ['compass-dev', 'mincss']
-			}
-		}
-	});
-	// 
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-compass');
-	// Default task.
-	grunt.registerTask('compass-dev', ['compass:dev']);
-	grunt.registerTask('compass-prod', ['compass:prod']);
-	// Default task.
-	grunt.registerTask('default', 'compass-prod');
-};
-
-
-
-
-/*
 module.exports = function(grunt){
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -69,6 +13,16 @@ module.exports = function(grunt){
 					port: 9000,
 					hostname: 'localhost'
 				}
+			}
+		},
+		watch: {
+			scripts: {
+				files: 'js/_src/*.js',
+				tasks: ['concat', 'uglify']
+			},
+			css: {
+				files: '_scss/*.scss',
+				tasks: ['compass', 'cssmin']
 			}
 		},
 		concat: {
@@ -88,22 +42,21 @@ module.exports = function(grunt){
 				}
 			},
 		compass: {
-			dist: {
-				options: {
-				}
+			dev: {
+				src: '_scss/',
+				dest: 'css/',
+				linecomments: false,
+				outputstyle: 'compressed',
+				forcecompile: false,
+				debugsass: false,
+				relativeassets: false
 			}
 		},
-		mincss: {
+		cssmin: {
 			compress: {
 				files: {
-					'css/style-min.css': 'css/style.css'
+				'css/style-min.css': 'css/style.css'
 				}
-			}
-		},
-		watch: {
-			scripts: {
-				files: 'js/_src/*.js',
-				tasks: ['compass', 'mincss']
 			}
 		}
 	});
@@ -113,7 +66,5 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-compass');
-	//grunt.registerTask('default', ['concat', 'uglify', 'compass', 'cssmin', 'connect', 'watch']);
-	grunt.registerTask('default', ['watch']);
+	grunt.registerTask('default', ['concat', 'uglify', 'compass', 'cssmin', 'connect', 'watch']);
 }
-*/
