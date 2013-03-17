@@ -1,12 +1,7 @@
 module.exports = function(grunt){
 
-	// load tasks
-	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-contrib-connect');
-	grunt.loadNpmTasks('grunt-contrib-clean');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-compass');
+	// load all grunt-plugin tasks
+	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
 	// init config
 	grunt.initConfig({
@@ -55,18 +50,17 @@ module.exports = function(grunt){
 		},
 		// watch some files status
 		watch: {
-			js: {
-				files: 'js/_src/*.js',
-				tasks: ['concat', 'uglify']
-			},
-			css: {
-				files: '_scss/*.scss',
-				tasks: ['compass', 'clean']
+			app: {
+				files: ['_scss/*.scss','js/_src/*.js'],
+				tasks: ['concat', 'uglify', 'compass', 'clean'],
+				options: {
+					nospawn: true
+				}
 			}
 		}
 	});
 
 	// resiter tasks
-	grunt.registerTask('default', ['clean', 'compass', 'connect', 'concat', 'uglify']);
+	grunt.registerTask('default', ['clean', 'compass', 'connect:server', 'concat', 'uglify', 'watch']);
 };
 
