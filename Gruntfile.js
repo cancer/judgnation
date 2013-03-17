@@ -25,7 +25,14 @@ module.exports = function(grunt){
 		concat: {
 			app: {
 				files: {
-					'js/all.js': [ 'js/_src/*.js' ]
+					'js/lib.js': [ 'js/_lib/jquery-1.9.1.min.js', 'js/_lib/underscore.min.js', 'js/_lib/backbone.min.js' ],
+					'js/all.min.js': [ 'js/lib.js', 'js/min.js' ]
+				}
+			},
+			dev: {
+				files: {
+					'js/lib.js': [ 'js/_lib/jquery-1.9.1.min.js', 'js/_lib/underscore.min.js', 'js/_lib/backbone.min.js' ],
+					'js/all.min.js': [ 'js/lib.js', 'js/_src/*.js' ]
 				}
 			}
 		},
@@ -33,7 +40,7 @@ module.exports = function(grunt){
 		uglify: {
 			app: {
 				files: {
-					'js/all.min.js': 'js/all.js'
+					'js/min.js': [ 'js/_src/*.js' ]
 				}
 			}
 		},
@@ -50,8 +57,15 @@ module.exports = function(grunt){
 		// watch some files status
 		watch: {
 			app: {
-				files: ['_scss/*.scss','js/_src/*.js'],
-				tasks: ['concat', 'uglify', 'compass', 'clean'],
+				files: ['_scss/*.scss','js/_src/*.js', 'js/_lib/*.js'],
+				tasks: ['uglify', 'concat', 'compass', 'clean'],
+				options: {
+					nospawn: true
+				}
+			},
+			dev: {
+				files: ['_scss/*.scss','js/_src/*.js', 'js/_lib/*.js'],
+				tasks: ['concat:dev', 'compass', 'clean'],
 				options: {
 					nospawn: true
 				}
@@ -60,6 +74,7 @@ module.exports = function(grunt){
 	});
 
 	// resiter tasks
-	grunt.registerTask('default', ['clean', 'compass', 'connect:server', 'concat', 'uglify', 'watch']);
+	grunt.registerTask('default', ['clean', 'compass', 'connect:server', 'uglify', 'concat', 'watch']);
+	grunt.registerTask('dev', ['clean', 'compass', 'connect:server', 'concat:dev', 'watch:dev']);
 };
 
