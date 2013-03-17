@@ -1,5 +1,12 @@
 module.exports = function(grunt){
 
+	var path = require('path');
+	var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
+
+	var folderMount = function folderMount(connect, point) {
+		return connect.static(path.resolve(point));
+	};
+
 	// load all grunt-plugin tasks
 	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
@@ -14,12 +21,22 @@ module.exports = function(grunt){
 			}
 		},
 		// setup localhost
+		// @url https://gist.github.com/konitter/5001702
 		connect: {
-			server: {
+			livereload: {
 				options: {
 					port: 9000,
-					hostname: 'localhost'
+					middleware: function(connect, options) {
+						return [lrSnippet, folderMount(connect, '.')]
+					}
 				}
+			}
+		},
+		// Configuration to be run (and then tested)
+		regarde: {
+			fred: {
+				files: ['index.html', 'css/style.css', 'js/all.js'],
+				tasks: ['livereload']
 			}
 		},
 		// concat JavasSript Files
@@ -61,6 +78,6 @@ module.exports = function(grunt){
 	});
 
 	// resiter tasks
-	grunt.registerTask('default', ['clean', 'compass', 'connect:server', 'concat', 'uglify', 'watch']);
+	grunt.registerTask('default', ['clean', 'compass', 'livereload-start', 'connect', 'regarde', 'concat', 'uglify', 'watch']);
 };
 
