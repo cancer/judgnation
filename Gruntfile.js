@@ -1,34 +1,72 @@
-/*
- * @refs http://met.hanatoweb.jp/archives/432/
- * @refs https://github.com/koba04/p5-petatube/blob/master/Gruntfile.js
- * @refs http://d.hatena.ne.jp/koba04/20130203/1359898395
- * @refs https://gist.github.com/shibu-t/4314906
- * */
 module.exports = function(grunt){
 
+	// load tasks
+	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-connect');
+	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-compass');
 
+	// init config
 	grunt.initConfig({
-		growl: {
-			done: {
-				title: 'grunt',
-				message: 'SUCCESSED!!'
+		pkg: grunt.file.readJSON('package.json'),
+		// delete some files
+		clean: {
+			app: {
+				force: true,
+				src: ['_scss/*.css','_scss/.*','*/.DS_Store']
 			}
 		},
+		// setup localhost
+		connect: {
+			server: {
+				options: {
+					port: 9000,
+					hostname: 'localhost'
+				}
+			}
+		},
+		// concat JavasSript Files
+		concat: {
+			app: {
+				files: {
+					'js/all.js': [ 'js/_src/*.js' ]
+				}
+			}
+		},
+		// minify JavasSript Files
+		uglify: {
+			app: {
+				files: {
+					'js/all.min.js': 'js/all.js'
+				}
+			}
+		},
+		// compile scss to css
 		compass: {
 			app: {
 				src: '_scss/',
-				dest: 'css/'
+				dest: 'css/',
+				outputstyle: 'compressed',
+				linecomments: true,
+				forcecompile: true
 			}
 		},
+		// watch some files status
 		watch: {
-			app: {
+			js: {
+				files: 'js/_src/*.js',
+				tasks: ['concat', 'uglify']
+			},
+			css: {
 				files: '_scss/*.scss',
-				tasks: 'compass'
+				tasks: ['compass', 'clean']
 			}
 		}
 	});
-	grunt.registerTask('default', 'compass');
+
+	// resiter tasks
+	grunt.registerTask('default', ['clean', 'compass', 'connect', 'concat', 'uglify']);
 };
 
