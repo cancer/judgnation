@@ -1,1 +1,22 @@
 // for Geckotang
+#wrapper{
+	border-radius:10px;
+}
+
+.current {
+	visibility:hidden;
+}
+
+.timer {
+	position:absolute;
+	top:0;
+	left:0;
+	width:1024px;
+	text-align:center;
+	font-size:200px;
+	font-family:'Georgia-BoldItalic';
+	-webkit-pointer-events:none;
+	pointer-events:none;
+	-webkit-user-select:none;
+	user-select:none;
+}
