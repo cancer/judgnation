@@ -20,3 +20,26 @@
 	-webkit-user-select:none;
 	user-select:none;
 }
+
+.btn_cancel {
+	$width: 150px;
+	$height: 70px;
+	$color_btn: green;
+	position:absolute;
+	top:0;
+	left:0;
+	display:block;
+	width: $width;
+	height: $height;
+	line-height: $height;
+	text-align:center;
+	background: $color_btn;
+	border-radius:50px;
+	font-size:20px;
+	color:#fff;
+	text-decoration:none;
+	&:active,
+	&.active{
+		background: darken($color_btn, 10%);
+	}
+}
