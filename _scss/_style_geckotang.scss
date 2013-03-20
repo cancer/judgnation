@@ -1,4 +1,31 @@
 // for Geckotang
+
+$color_save: rgb(81, 163, 81);
+$color_cancel: rgb(230, 230, 230) ;
+
+%centering {
+	position:absolute;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	margin:auto;
+}
+
+%setting_btn {
+	display:inline-block;
+	padding:10px;
+	background:#000;
+	border-radius: 20px;
+	color:#fff;
+	@include background(linear-gradient(270deg, $color_cancel 0%, darken($color_cancel, 20%) 100%));
+	box-shadow:0 0 5px #000;
+	text-decoration:none;
+	&:active{
+		@include background(linear-gradient(90deg, $color_cancel 0%, darken($color_cancel, 20%) 100%));
+	}
+}
+
 #wrapper{
 	border-radius:10px;
 }
@@ -22,24 +49,60 @@
 }
 
 .btn_cancel {
-	$width: 150px;
-	$height: 70px;
-	$color_btn: green;
-	position:absolute;
-	top:0;
-	left:0;
-	display:block;
-	width: $width;
-	height: $height;
-	line-height: $height;
-	text-align:center;
-	background: $color_btn;
-	border-radius:50px;
-	font-size:20px;
-	color:#fff;
-	text-decoration:none;
-	&:active,
-	&.active{
-		background: darken($color_btn, 10%);
+	@extend %setting_btn;
+}
+
+
+.setting_wrapper {
+	@extend %centering;
+	width:900px;
+	height:650px;
+	box-sizing:border-box;
+	padding:20px;
+	border-radius: 20px;
+	background: rgba(255, 255, 255, 0.9);
+	font-size:35px;
+	box-shadow:0 0 10px #000;
+}
+
+
+.setting_btn_save {
+	@extend %setting_btn;
+	@include background(linear-gradient(270deg, $color_save 0%, darken($color_save, 20%) 100%));
+	&:active {
+		@include background(linear-gradient(90deg, $color_save 0%, darken($color_save, 20%) 100%));
 	}
 }
+
+.setting_btn_cancel {
+	@extend %setting_btn;
+}
+
+.setting_form {
+	display:table;
+	table-layout: fixed;
+	padding: {
+		bottom:20px;
+	}
+	margin: {
+		bottom:20px;
+	}
+	border: {
+		bottom: 1px dashed #ccc;
+	}
+}
+.setting_form_label{
+	display:table-cell;
+	width:50%;
+}
+.setting_form_input{
+	display:table-cell;
+	width:50%;
+	&>input[type="text"] {
+		font-size:40px;
+		width:100%;
+	}
+}
+
+
+
