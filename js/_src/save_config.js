@@ -30,16 +30,10 @@
 				}
 
 				judgnation.save('timer', set_timer_val);
-				_setCurrentTime($box_timer, set_timer_val);
+				judgnation.updateTimer($box_timer, set_timer_val);
 				$container.hide();
 				return ;
 			}
 		});
-
-		//TODO updateTimerとかにして共通化すべき
-		function _setCurrentTime(elem, count) {
-			elem.html(count);
-		}
-
 	});
 })( window._ );

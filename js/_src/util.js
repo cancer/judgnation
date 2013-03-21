@@ -30,6 +30,9 @@
 				alert('プライベートブラウジングを解除してください');
 				return false;
 			}
+		},
+		updateTimer : function(elem, count){
+			elem.html(count);
 		}
 	};
 	window.judgnation = new Judgnation();

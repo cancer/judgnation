@@ -6,28 +6,29 @@
 		var $btn_B = $('#jsSecureButtonB');
 		var $secure_btns = $('#jsBtnContainer').find('.mod_btn');
 		var $btn_cancel = $('#jsSecureCancel');
-		var default_count = $box_timer.attr('data-interval');
+		var default_count = judgnation.fetch('timer') || $box_timer.attr('data-interval');
 		var timer = '';
 		var current_owner = '';
 		var team_A_color = $btn_A.attr('data-color');
 		var team_B_color = $btn_B.attr('data-color');
 		var default_bg_color = 'transparent';
 		var current_owner_class = 'current';
+		var updateTimer = judgnation.updateTimer;
 
-		_setCurrentTime($box_timer, default_count);
+		updateTimer($box_timer, default_count);
 
 		//TODO: オブジェクトでまとめたほうが良い気がする
 		$secure_btns.bind('touchstart', function(e){
 			e.preventDefault();
-			var count = default_count;
 			var that = $(this);
+			var count = judgnation.fetch('timer');
 			timer = setInterval(function(){
 				count--;
 				if(count === 0){
 					_endTimer();
 					_setOwnerStatus(that.attr('data-color'));
 				}
-				_setCurrentTime($box_timer, count);
+				updateTimer($box_timer, count);
 			}, 1000);
 		});
 
@@ -49,13 +50,10 @@
 			}
 		});
 
-		function _setCurrentTime(elem, count) {
-			elem.html(count);
-		}
-
 		function _endTimer(){
+			var count = judgnation.fetch('timer');
 			clearInterval(timer);
-			_setCurrentTime($box_timer, default_count);
+			updateTimer($box_timer, count);
 		}
 
 		// 画面を所有者の色に切り替える
