@@ -4,14 +4,14 @@
 		var $box_timer = $('#jsTimerContainer');
 		var $btn_A = $('#jsSecureButtonA');
 		var $btn_B = $('#jsSecureButtonB');
-		var $secure_btns = $('#jsBtnContainer').find('.mod_btn');
+		var $secure_btns = $('#jsBtnContainer').find('[class*="btn_"]');
 		var $btn_cancel = $('#jsSecureCancel');
 		var default_count = judgnation.fetch('timer') || $box_timer.attr('data-interval');
 		var timer = '';
 		var current_owner = '';
 		var team_A_color = $btn_A.attr('data-color');
 		var team_B_color = $btn_B.attr('data-color');
-		var default_bg_color = 'transparent';
+		var default_bg_color = '#ede5e2';
 		var current_owner_class = 'current';
 		var updateTimer = judgnation.updateTimer;
 

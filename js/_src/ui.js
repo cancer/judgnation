@@ -1,0 +1,2 @@
+(function(_){
+})(window._);

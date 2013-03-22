@@ -5,6 +5,17 @@
 		var $btn_save = $('#jsBtnSettingSave');
 		var $btn_cancel = $('#jsBtnSettingCancel');
 		var $box_timer = $('#jsTimerContainer');
+		var $btn_open = $('#jsBtnConfigOpen');
+
+		$btn_open.bind({
+			'touchstart' : function(e){
+				e.preventDefault();
+			},
+			'touchend' : function(e){
+				e.preventDefault();
+				$container.show();
+			}
+		});
 
 		$btn_cancel.bind({
 			'touchstart' : function(e){
