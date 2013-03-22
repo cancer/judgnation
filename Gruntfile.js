@@ -1,6 +1,10 @@
 module.exports = function(grunt){
+	var path = require('path');
+	var matchde = require('matchdep');
+
 	// load all grunt-plugin tasks
-	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+	matchde.filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+
 	// init config
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -12,13 +16,26 @@ module.exports = function(grunt){
 			}
 		},
 		// setup localhost
-		// @url https://gist.github.com/konitter/5001702
-		connect: {
-			server: {
+		// @url https://github.com/blai/grunt-express-example/blob/master/Gruntfile.js
+		express: {
+			livereload: {
 				options: {
 					port: 9000,
-					hostname: 'localhost'
+					bases: path.resolve('site'),
+					monitor: {},
+					debug: false,
+					server: path.resolve('./web')
 				}
+			}
+		},	
+		regarde: {
+			dist: {
+				files: './site/*',
+				tasks: ['livereload']
+			},
+			server: {
+				files: 'web.js',
+				tasks: ['express-restart:livereload']
 			}
 		},
 		// concat JavasSript Files
@@ -74,7 +91,8 @@ module.exports = function(grunt){
 	});
 
 	// resiter tasks
-	grunt.registerTask('default', ['clean', 'compass', 'connect:server', 'uglify', 'concat', 'watch']);
-	grunt.registerTask('dev', ['clean', 'compass', 'connect:server', 'concat:dev', 'watch:dev']);
+	grunt.registerTask('server', ['livereload-start','express', 'regarde']);
+	grunt.registerTask('default', ['clean', 'compass', 'server', 'uglify', 'concat', 'watch']);
+	grunt.registerTask('dev', ['clean', 'compass', 'server', 'concat:dev', 'watch:dev']);
 };
 

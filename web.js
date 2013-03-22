@@ -12,7 +12,6 @@ var express = require('express')
 var app = express();
 
 app.configure(function(){
-	console.log(__dirname);
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/site/views');
   app.set('view engine', 'jade');
