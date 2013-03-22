@@ -15,6 +15,14 @@ module.exports = function(grunt){
 				src: ['_scss/*.css','_scss/.*','*/.DS_Store']
 			}
 		},
+		 copy: {
+			app: {
+				files: [
+					{src: ['css/style.css'], dest: './site/public/stylesheets/style.css', filter: 'isFile'},
+					{src: ['js/all.min.js'], dest: './site/public/javascripts/all.min.js', filter: 'isFile'}
+				]
+			}
+		},
 		// setup localhost
 		// @url https://github.com/blai/grunt-express-example/blob/master/Gruntfile.js
 		express: {
@@ -75,14 +83,14 @@ module.exports = function(grunt){
 		watch: {
 			app: {
 				files: ['_scss/*.scss','js/_src/*.js', 'js/_lib/*.js'],
-				tasks: ['uglify', 'concat', 'compass', 'clean'],
+				tasks: ['uglify', 'concat', 'compass', 'copy', 'clean'],
 				options: {
 					nospawn: true
 				}
 			},
 			dev: {
 				files: ['_scss/*.scss','js/_src/*.js', 'js/_lib/*.js'],
-				tasks: ['concat:dev', 'compass', 'clean'],
+				tasks: ['concat:dev', 'compass', 'copy', 'clean'],
 				options: {
 					nospawn: true
 				}
@@ -91,8 +99,8 @@ module.exports = function(grunt){
 	});
 
 	// resiter tasks
-	grunt.registerTask('server', ['livereload-start','express', 'regarde']);
-	grunt.registerTask('default', ['clean', 'compass', 'server', 'uglify', 'concat', 'watch']);
-	grunt.registerTask('dev', ['clean', 'compass', 'server', 'concat:dev', 'watch:dev']);
+	//grunt.registerTask('server', ['livereload-start', 'regarde']);
+	grunt.registerTask('default', ['clean', 'compass', 'uglify', 'concat', 'copy', 'watch']);
+	grunt.registerTask('dev', ['clean', 'compass', 'server', 'concat:dev', 'copy', 'watch:dev']);
 };
 
