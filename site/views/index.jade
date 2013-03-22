@@ -1,5 +1,22 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+	#wrapper
+		#jsTimerContainer.timer(data-interval="10")
+		a#jsSecureCancel.btn_cancel(href="#") キャンセル
+		#jsContainer.box_btn
+			.item_btn
+				a#jsSecureButtonA.mod_btn.btn_red(href="#", data-color="red")
+			.item_btn
+				a#jsSecureButtonB.mod_btn.btn_yellow(href="#", data-color="yellow")
+		#jsSettingContainer.setting_wrapper
+			.setting_form
+				label.setting_form_label(for="jsSettingTimer") 専有するための時間
+				.setting_form_input
+					input#jsSettingTimer(type="text", pattern="[0-9]*", value="")
+			a#jsBtnSettingSave.setting_btn_save(href="#") 設定を反映する
+			a#jsBtnSettingCancel.setting_btn_cancel(href="#") やめる
+
+
+
+
