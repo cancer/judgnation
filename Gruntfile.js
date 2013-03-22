@@ -101,6 +101,6 @@ module.exports = function(grunt){
 	// resiter tasks
 	//grunt.registerTask('server', ['livereload-start', 'regarde']);
 	grunt.registerTask('default', ['clean', 'compass', 'uglify', 'concat', 'copy', 'watch']);
-	grunt.registerTask('dev', ['clean', 'compass', 'server', 'concat:dev', 'copy', 'watch:dev']);
+	grunt.registerTask('dev', ['clean', 'compass', 'concat:dev', 'copy', 'watch:dev']);
 };
 
