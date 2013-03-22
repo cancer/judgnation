@@ -3,12 +3,12 @@ extends layout
 block content
 	#wrapper
 		#jsTimerContainer.timer(data-interval="10")
-		a#jsSecureCancel.btn_cancel(href="#") キャンセル
-		#jsContainer.box_btn
+		a#jsBtnConfigOpen.btn_config(href="#") 設定
+		#jsBtnContainer.box_btn
 			.item_btn
-				a#jsSecureButtonA.mod_btn.btn_red(href="#", data-color="red")
+				a#jsSecureButtonA.btn_red(href="#", data-color="red")
 			.item_btn
-				a#jsSecureButtonB.mod_btn.btn_yellow(href="#", data-color="yellow")
+				a#jsSecureButtonB.btn_yellow(href="#", data-color="yellow")
 		#jsSettingContainer.setting_wrapper
 			.setting_form
 				label.setting_form_label(for="jsSettingTimer") 専有するための時間
@@ -16,6 +16,7 @@ block content
 					input#jsSettingTimer(type="text", pattern="[0-9]*", value="")
 			a#jsBtnSettingSave.setting_btn_save(href="#") 設定を反映する
 			a#jsBtnSettingCancel.setting_btn_cancel(href="#") やめる
+			a#jsSecureCancel.btn_cancel(href="#") リセット
 
 
 
