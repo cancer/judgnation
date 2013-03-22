@@ -17,7 +17,7 @@
 	vertical-align: middle;
 }
 
-%mod_btn {
+%mod_secure_btn {
 	display: block;
 	width: 480px;
 	height: 480px;
@@ -34,12 +34,36 @@
 
 
 .btn_red{
-	@extend %mod_btn;
+	@extend %mod_secure_btn;
 	@include background(linear-gradient(45deg, $color_red 0%, darken($color_red, 20%) 100%));
 }
 
 .btn_yellow{
-	@extend %mod_btn;
+	@extend %mod_secure_btn;
 	@include background(linear-gradient(45deg, $color_yellow 0%, darken($color_yellow, 30%) 100%));
 }
 
+$color_save: rgb(81, 163, 81);
+$color_cancel: rgb(230, 230, 230) ;
+
+%setting_btn {
+	display:inline-block;
+	padding:10px;
+	background:#000;
+	border-radius: 20px;
+	color:#fff;
+	@include background(linear-gradient(270deg, $color_cancel 0%, darken($color_cancel, 20%) 100%));
+	box-shadow:0 0 5px #000;
+	text-decoration:none;
+	&:active{
+		@include background(linear-gradient(90deg, $color_cancel 0%, darken($color_cancel, 20%) 100%));
+	}
+}
+
+.btn_config{
+	@extend %setting_btn;
+}
+
+.setting_wrapper {
+	display: none;
+}
