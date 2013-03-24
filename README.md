@@ -9,7 +9,7 @@ Judgment of domination
 ### 最低限欲しい機能
 
 * ✔ 基本的にオフラインで動作する
-* iPad初代で動く
+* ✔ iPad初代で動く
 * ✔ 自分・敵チームが専有するために押すボタンがある
 * ✔ 専有するためには10秒タッチし続ける事
 * ✔ 専有するためのタッチ時間は変更できる
@@ -38,8 +38,11 @@ Judgment of domination
 ## 使う技術
 
 * Application Cache
+* LocalStorage
 * Sass + Compass
-* Grunt.js
+* NodeJS
+ * Grunt.js
+ * express + Jade
 
 ## 製作者
 
