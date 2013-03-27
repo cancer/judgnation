@@ -50,13 +50,23 @@ module.exports = function(grunt){
 		concat: {
 			app: {
 				files: {
-					'js/lib.js': [ 'js/_lib/jquery-1.9.1.min.js', 'js/_lib/underscore.min.js', 'js/_lib/backbone.min.js' ],
+					'js/lib.js': [
+						'js/_lib/jquery-1.9.1.min.js',
+						'js/_lib/underscore.min.js',
+						'js/_lib/audio5js/audio5.min.js',
+						'js/_lib/backbone.min.js'
+					],
 					'js/all.min.js': [ 'js/lib.js', 'js/min.js' ]
 				}
 			},
 			dev: {
 				files: {
-					'js/lib.js': [ 'js/_lib/jquery-1.9.1.min.js', 'js/_lib/underscore.min.js', 'js/_lib/backbone.min.js' ],
+					'js/lib.js': [
+						'js/_lib/jquery-1.9.1.min.js',
+						'js/_lib/underscore.min.js',
+						'js/_lib/audio5js/audio5.min.js',
+						'js/_lib/backbone.min.js'
+					],
 					'js/all.min.js': [ 'js/lib.js', 'js/_src/*.js' ]
 				}
 			}
