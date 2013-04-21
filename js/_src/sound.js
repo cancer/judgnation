@@ -22,14 +22,10 @@
 							oldSrc = src;
 							audio.load(src);
 						}else{
-							audio.seek(0);
-							audio.play();
-							that.isPlaying = true;
+							replay();
 						}
 						audio.on("canplay", function() {
-							audio.seek(0);
-							audio.play();
-							that.isPlaying = true;
+							replay();
 						});
 					});
 					config.$playBtn.on('touchend.sound', function(e){
@@ -40,13 +36,16 @@
 					});
 
 					audio.on("ended", function() {
-						audio.seek(0);
-						audio.play();
-						that.isPlaying = true;
+						replay();
 					});
 
 					audio.on("error" , function (error) {
 					});
+					function replay (){
+						audio.seek(0);
+						audio.play();
+						that.isPlaying = true;
+					}
 				}
 			});
 		},
