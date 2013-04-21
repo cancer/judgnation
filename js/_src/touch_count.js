@@ -15,6 +15,7 @@
 		var current_owner_class = 'current';
 		var updateTimer = judgnation.updateTimer;
 
+		judgeSound.init();
 		updateTimer($box_timer, default_count);
 
 		//TODO: オブジェクトでまとめたほうが良い気がする

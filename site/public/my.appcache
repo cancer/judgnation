@@ -1,8 +1,9 @@
 CACHE MANIFEST
-#2013-03-023_5
+#2013-03-023_15
 
 NETWORK:
-*
+javascripts/all.min.js
+stylesheets/style.css
 
 CACHE:
 javascripts/all.min.js
