@@ -32,7 +32,7 @@ module.exports = function(grunt){
 					bases: path.resolve('site'),
 					monitor: {},
 					debug: false,
-					server: path.resolve('./web')
+					server: path.resolve('./app')
 				}
 			}
 		},	
@@ -42,7 +42,7 @@ module.exports = function(grunt){
 				tasks: ['livereload']
 			},
 			server: {
-				files: 'web.js',
+				files: 'app.js',
 				tasks: ['express-restart:livereload']
 			}
 		},
@@ -109,7 +109,7 @@ module.exports = function(grunt){
 	});
 
 	// resiter tasks
-	//grunt.registerTask('server', ['livereload-start', 'regarde']);
+	grunt.registerTask('server', ['livereload-start', 'regarde']);
 	grunt.registerTask('default', ['clean', 'compass', 'uglify', 'concat', 'copy', 'watch']);
 	grunt.registerTask('dev', ['clean', 'compass', 'concat:dev', 'copy', 'watch:dev']);
 };
