@@ -17,7 +17,7 @@
 
 		judgeSound.init({
 			$allowBtn: $('#jsSoundStart'),
-			$playBtn: $('[class*="btn_"]')
+			$playBtn: $('[data-sound]')
 		});
 		updateTimer($box_timer, default_count);
 
