@@ -32,7 +32,7 @@ module.exports = function(grunt){
 					bases: path.resolve('site'),
 					monitor: {},
 					debug: false,
-					server: path.resolve('./web')
+					server: path.resolve('./app')
 				}
 			}
 		},	
@@ -42,7 +42,7 @@ module.exports = function(grunt){
 				tasks: ['livereload']
 			},
 			server: {
-				files: 'web.js',
+				files: 'app.js',
 				tasks: ['express-restart:livereload']
 			}
 		},
@@ -50,13 +50,23 @@ module.exports = function(grunt){
 		concat: {
 			app: {
 				files: {
-					'js/lib.js': [ 'js/_lib/jquery-1.9.1.min.js', 'js/_lib/underscore.min.js', 'js/_lib/backbone.min.js' ],
+					'js/lib.js': [
+						'js/_lib/jquery-1.9.1.min.js',
+						'js/_lib/underscore.min.js',
+						'js/_lib/audio5js/audio5.min.js',
+						'js/_lib/backbone.min.js'
+					],
 					'js/all.min.js': [ 'js/lib.js', 'js/min.js' ]
 				}
 			},
 			dev: {
 				files: {
-					'js/lib.js': [ 'js/_lib/jquery-1.9.1.min.js', 'js/_lib/underscore.min.js', 'js/_lib/backbone.min.js' ],
+					'js/lib.js': [
+						'js/_lib/jquery-1.9.1.min.js',
+						'js/_lib/underscore.min.js',
+						'js/_lib/audio5js/audio5.min.js',
+						'js/_lib/backbone.min.js'
+					],
 					'js/all.min.js': [ 'js/lib.js', 'js/_src/*.js' ]
 				}
 			}
@@ -99,7 +109,7 @@ module.exports = function(grunt){
 	});
 
 	// resiter tasks
-	//grunt.registerTask('server', ['livereload-start', 'regarde']);
+	grunt.registerTask('server', ['livereload-start', 'regarde']);
 	grunt.registerTask('default', ['clean', 'compass', 'uglify', 'concat', 'copy', 'watch']);
 	grunt.registerTask('dev', ['clean', 'compass', 'concat:dev', 'copy', 'watch:dev']);
 };
