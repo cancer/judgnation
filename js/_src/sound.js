@@ -1,6 +1,6 @@
 (function(_){
+
 	var JudgeSound = function () {
-		this.loaded = false;
 		this.oldSrc = '';
 		this.audio5js = function () {};
 	}
@@ -47,13 +47,24 @@
 		 */
 		play: function (src) {
 			var that = this;
+			// もし再生中であれば反応しない
+			if (that.isPlaying) {
+				return;
+			}
+			// 初回のみロードしてから再生
 			if (that.oldSrc !== src) {
 				that.oldSrc = src;
 				that.audio5js.load(src);
+				that.replay();
+				that.canPlay = true;
 			}else{
 				that.replay();
 			}
 			that.audio5js.on("canplay", function() {
+				if (!that.canPlay) {
+					return;
+				}
+				that.canPlay = true;
 				that.replay();
 			});
 		},
@@ -63,9 +74,8 @@
 		 */
 		replay: function () {
 			var that = this;
-			that.audio5js.seek(0);
-			that.audio5js.play();
 			that.isPlaying = true;
+			that.audio5js.play();
 		},
 
 		/**
@@ -73,9 +83,9 @@
 		 */
 		stop: function () {
 			var that = this;
-			that.audio5js.seek(0);
-			that.audio5js.pause();
+			that.canPlay = false;
 			that.isPlaying = false;
+			that.audio5js.pause();
 		},
 
 		/**
