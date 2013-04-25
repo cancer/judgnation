@@ -30,17 +30,28 @@ $color_cancel: rgb(230, 230, 230) ;
 	border-radius:10px;
 }
 
+#jsProgressBar {
+	position: absolute;
+	margin: 0 auto;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index:10;
+	-webkit-pointer-events:none;
+	pointer-events:none;
+}
+
 .current {
 	visibility:hidden;
 }
 
 .timer {
 	position:absolute;
-	top:0;
+	top:30px;
 	left:0;
 	width:1024px;
 	text-align:center;
-	font-size:200px;
+	font-size:180px;
 	font-family:'Georgia-BoldItalic';
 	-webkit-pointer-events:none;
 	pointer-events:none;
