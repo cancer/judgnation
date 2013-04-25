@@ -51,6 +51,7 @@ module.exports = function(grunt){
 			app: {
 				files: {
 					'js/lib.js': [
+						'js/_lib/raphael-min.js',
 						'js/_lib/audio5.geckotang.js',
 						'js/_lib/jquery-1.9.1.min.js',
 						'js/_lib/underscore.min.js',
@@ -62,6 +63,7 @@ module.exports = function(grunt){
 			dev: {
 				files: {
 					'js/lib.js': [
+						'js/_lib/raphael-min.js',
 						'js/_lib/audio5.geckotang.js',
 						'js/_lib/jquery-1.9.1.min.js',
 						'js/_lib/underscore.min.js',

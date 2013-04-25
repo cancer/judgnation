@@ -15,6 +15,10 @@
 		var current_owner_class = 'current';
 		var updateTimer = judgnation.updateTimer;
 
+		progressBar.init({
+			id: 'jsProgressBar'
+		});
+
 		judgeSound.init({
 			$allowBtn: $('#jsSoundStart'),
 			$playBtn: $('[data-sound]')
@@ -26,6 +30,7 @@
 			e.preventDefault();
 			var that = $(this);
 			var count = judgnation.fetch('timer');
+			progressBar.show();
 			timer = setInterval(function(){
 				count--;
 				if(count === 0){
@@ -33,6 +38,7 @@
 					_setOwnerStatus(that.attr('data-color'));
 				}
 				updateTimer($box_timer, count);
+				progressBar.update();
 			}, 1000);
 		});
 
@@ -40,6 +46,8 @@
 		$secure_btns.bind('touchend', function(e){
 			e.preventDefault();
 			_endTimer();
+			progressBar.reset();
+			progressBar.update();
 		});
 
 		// 専有状態をキャンセルするボタン
@@ -58,6 +66,7 @@
 			var count = judgnation.fetch('timer');
 			clearInterval(timer);
 			updateTimer($box_timer, count);
+			progressBar.hide();
 		}
 
 		// 画面を所有者の色に切り替える

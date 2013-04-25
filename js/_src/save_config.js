@@ -41,6 +41,10 @@
 				}
 
 				judgnation.save('timer', set_timer_val);
+				progressBar.init({
+					step: set_timer_val,
+					id: 'jsProgressBar'
+				});
 				judgnation.updateTimer($box_timer, set_timer_val);
 				$container.hide();
 				return ;
